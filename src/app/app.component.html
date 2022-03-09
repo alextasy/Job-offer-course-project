@@ -1,1 +1,32 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Sign in</h5>
+        <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <label for="email" class="col-form-label">Email:</label>
+                <input type="email" class="form-control" id="email"/>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="col-form-label">Password:</label>
+                <input type="password" class="form-control" id="password"/>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close()">Sign in</button>
+    </div>
+</ng-template>
+
+<header class="Header navbar sticky-top border-bottom bg-white">
+    <h1 class="display-6">Job<span class="text-primary">Offers</span></h1>
+    <div class="btn-toolbar gap-2">
+        <button class="btn btn-primary" (click)="openModal(content)">Sign in</button>
+    </div>
+</header>
+
 <router-outlet></router-outlet>
