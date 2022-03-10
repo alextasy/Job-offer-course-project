@@ -6,9 +6,9 @@
         "numOfLikes": 43,
         "type": "full-time",
         "category": "IT",
-        "applied": [],
+        "applied": [{ "id": 1, "message": "Hello, your offer seems very interesting and I would like to discuss it further on the phone! I have several years of web design and development experience and I'm a good fit for the postion." }],
         "isActive": true,
-        "acceptedUser": null,
+        "acceptedUserId": 1,
         "postedById": 2
     },
     {
@@ -20,7 +20,6 @@
         "category": "Food industry",
         "applied": [],
         "isActive": true,
-        "acceptedUser": null,
         "postedById": 3
     },
     {
@@ -32,7 +31,6 @@
         "category": "Education",
         "applied": [],
         "isActive": true,
-        "acceptedUser": null,
         "postedById": 4
     },
     {
@@ -42,9 +40,9 @@
         "numOfLikes": 27,
         "type": "full-time",
         "category": "Web Design",
-        "applied": [],
+        "applied": [{ "id": 1, "message": "Hello, your offer seems very interesting and I would like to discuss it further on the phone! I have several years of web design and development experience and I'm a good fit for the postion." }],
         "isActive": true,
-        "acceptedUser": null,
+        "acceptedUserId": 1,
         "postedById": 5
     },
     {
@@ -56,7 +54,6 @@
         "category": "Customer Service",
         "applied": [],
         "isActive": true,
-        "acceptedUser": null,
         "postedById": 6
     }
 ]

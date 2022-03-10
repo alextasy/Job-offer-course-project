@@ -1,5 +1,3 @@
-import { IUser } from './user.interface';
-
 export interface IJobOffer {
     id: number;
     title: string;
@@ -7,8 +5,8 @@ export interface IJobOffer {
     numOfLikes: number;
     type: 'part-time' | 'full-time' | 'remote';
     category: string;
-    applied: IUser[];
-    isActive: boolean;
-    acceptedUser: IUser;
+    applied: { id: number, message: string }[];
+    isActive?: boolean;
+    acceptedUserId?: number;
     postedById: number;
 }
