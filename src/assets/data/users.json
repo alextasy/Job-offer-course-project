@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Aleksandar Stoyanov",
+        "email": "test@test.com",
+        "password": "test123",
+        "type": "user"
+    },
+    {
+        "id": 2,
+        "name": "FactSet",
+        "email": "admin@factset.com",
+        "password": "test123",
+        "type": "company"
+    },
+    {
+        "id": 3,
+        "name": "Domino's Pizza",
+        "email": "admin@dominos.com",
+        "password": "test123",
+        "type": "company"
+    },
+    {
+        "id": 4,
+        "name": "BRITANICA",
+        "email": "admin@britanica.com",
+        "password": "test123",
+        "type": "company"
+    },
+    {
+        "id": 5,
+        "name": "Paysafe Limited",
+        "email": "admin@paysafe.com",
+        "password": "test123",
+        "type": "company"
+    },
+    {
+        "id": 6,
+        "name": "Telus",
+        "email": "admin@telus.com",
+        "password": "test123",
+        "type": "company"
+    }
+]

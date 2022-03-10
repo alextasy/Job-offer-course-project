@@ -1,7 +1,7 @@
 import { IUser } from './user.interface';
 
 export interface IJobOffer {
-    id: string;
+    id: number;
     title: string;
     description: string;
     numOfLikes: number;
@@ -10,4 +10,5 @@ export interface IJobOffer {
     applied: IUser[];
     isActive: boolean;
     acceptedUser: IUser;
+    postedById: number;
 }

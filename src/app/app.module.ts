@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
 
 export function initData(data: DataService) {
-  return () => data.loadOffers()
+  return () => data.loadData();
 }
 
 @NgModule({
