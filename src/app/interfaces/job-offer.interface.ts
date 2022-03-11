@@ -9,4 +9,5 @@ export interface IJobOffer {
     isActive?: boolean;
     acceptedUserId?: number;
     postedById: number;
+    likedByUser?: boolean;
 }

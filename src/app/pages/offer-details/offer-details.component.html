@@ -1,0 +1,88 @@
+<div *ngIf="offer" class="container-md">
+    <div class="Post card position-relative my-4">
+        <h5 class="card-header">
+            <div class="row">
+                <p class="col-8 mb-0 vertical-center">
+                    <i class="bi bi-award-fill"></i> {{ offer.title }}
+                </p>
+                <div class="col-4 posted-by">
+                    <p class="mb-0 text-right">Posted by:</p>
+                    <p class="mb-0 text-right text-primary">{{ getPostedBy(offer.postedById) }}</p>
+                </div>
+            </div>
+        </h5>
+        <div class="card-body">
+            <p class="card-text">{{ offer.description }}</p>
+        </div>
+    </div>
+
+    <div class="Post card position-relative my-4">
+        <h5 class="card-header">
+            <p class="mb-0 vertical-center">
+                <i class="bi bi-card-list"></i> Offer properties
+            </p>
+        </h5>
+        <div class="card-body">
+            <div class="ml-2">
+                <div class="my-2">
+                    <i class="bi bi-person-lines-fill"></i>
+                    &nbsp;<b>Posted by:</b> {{ getPostedBy(offer.postedById) }}
+                </div>
+                <div class="my-2">
+                    <i class="bi bi-clock-fill"></i>
+                    &nbsp;<b>Hours:</b> {{ offer.type }}
+                </div>
+                <div class="my-2">
+                    <i class="bi bi-tag-fill"></i>
+                    &nbsp;<b>Category:</b> {{ offer.category }}
+                </div>
+                <div class="my-2">
+                    <i class="bi bi-heart-fill text-danger"></i>
+                    &nbsp;<b>Liked by:</b> {{ offer.numOfLikes }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!data.currentUser || data.currentUser.type === 'user'" class="Post card position-relative my-4">
+        <h5 class="card-header">
+            <p class="mb-0 vertical-center">
+                <i class="bi bi-caret-right-fill"></i>Actions
+            </p>
+        </h5>
+        <div class="card-body">
+            <div *ngIf="hasApplied()" class="mb-2">
+                <div>
+                    <i class="bi bi-file-earmark-check-fill"></i>
+                    &nbsp;<b>You have already applied for this position!</b>
+                </div>
+                <div *ngIf="offer.acceptedUserId === data.currentUser?.id">
+                    <i class="bi bi-envelope-paper-heart-fill"></i>
+                    &nbsp;<b>You have been <span class="text-primary">approved</span> for this position!</b>
+                </div>
+                <div *ngIf="offer.acceptedUserId !== data.currentUser?.id">
+                    <i class="bi bi-envelope-paper-heart-fill"></i>
+                    &nbsp;<b>You are <span class="text-primary">awaiting</span> response for this position!</b>
+                </div>
+            </div>
+
+            <label for="text-area">
+                <i class="bi bi-pen-fill"></i>
+                &nbsp;<b>Application message:</b>
+            </label>
+            <div class="input-group mb-2">
+                <textarea class="form-control" id="text-area" aria-label="Application Message" [(ngModel)]="applyMessage" [disabled]="applyDisabled()">{{applyMessage}}</textarea>
+            </div>
+            <p *ngIf="!data.currentUser" class="text-danger">Sign in to apply for offers <br>Sign in to like offers</p>
+            <button type="button" class="btn btn-primary mr-2" [disabled]="applyDisabled()" (click)="apply()">
+                <i class="bi bi-pen-fill"></i> Apply for offer
+            </button>
+            <button *ngIf="!offer?.likedByUser" type="button" class="btn btn-danger" [disabled]="likeDisabled()" (click)="like()">
+                <i class="bi bi-heart-fill"></i> Like this offer
+            </button>
+            <button *ngIf="offer?.likedByUser" type="button" class="btn btn-outline-danger" [disabled]="likeDisabled()" (click)="like()">
+                <i class="bi bi-heartbreak-fill"></i> Remove like
+            </button>
+        </div>
+    </div>
+</div>

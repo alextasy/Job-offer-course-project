@@ -1,0 +1,29 @@
+.card-header {
+    p {
+        white-space: nowrap;
+        word-break: break-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &.vertical-center {
+            line-height: 200%;
+        }
+    }
+    .posted-by {
+        font-weight: normal;
+        :first-child {
+            font-size: 14px;
+        }
+    }
+}
+
+.card-body {
+    min-height: 100px;
+    overflow: hidden;
+    margin: 1rem !important;
+    padding: 0 !important;
+    white-space: pre-line;
+}
+
+textarea {
+    min-height: 10rem;
+}

@@ -7,6 +7,8 @@ import { OffersComponent } from './pages/offers/offers.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
+import { OfferDetailsComponent } from './pages/offer-details/offer-details.component';
+import { FormsModule } from '@angular/forms';
 
 export function initData(data: DataService) {
   return () => data.loadData();
@@ -15,13 +17,15 @@ export function initData(data: DataService) {
 @NgModule({
   declarations: [
     AppComponent,
-    OffersComponent
+    OffersComponent,
+    OfferDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [DataService, { provide: APP_INITIALIZER, useFactory: initData, deps: [DataService], multi: true }],
   bootstrap: [AppComponent]
