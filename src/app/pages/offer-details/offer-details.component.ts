@@ -16,6 +16,8 @@ export class OfferDetailsComponent implements OnInit {
   public appliedUsers: any[] = [];
   public editMode = false;
   public duplicate: IJobOffer | undefined;
+  private isNew = false;
+  public editFailed = false;
 
   constructor(
     public data: DataService,
@@ -25,6 +27,24 @@ export class OfferDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.route.snapshot.params.id === 'new') {
+      this.isNew = true;
+      this.postedByMe = true;
+      this.offer = {
+        id: this.data.offers[this.data.offers.length -1].id + 1,
+        title: '',
+        description: '',
+        numOfLikes: 0,
+        type: 'full-time',
+        category: '',
+        applied: [],
+        //@ts-ignore
+        postedById: this.data.currentUser.id,
+      }
+      this.editOffer();
+      return;
+    }
+
     const id = Number(this.route.snapshot.params.id);
     this.offer = this.data.offers.find(offer => offer.id === id);
     const application = this.offer?.applied.find(user => user.id === this.data.currentUser?.id);
@@ -85,6 +105,7 @@ export class OfferDetailsComponent implements OnInit {
   public editOffer(): void {
     if (!this.offer) return;
 
+    this.editFailed = false;
     this.editMode = true;
     this.duplicate = { ...this.offer };
   }
@@ -92,10 +113,20 @@ export class OfferDetailsComponent implements OnInit {
   public saveOffer(): void {
     if (!this.offer || !this.duplicate) return;
 
+    if (!this.duplicate.title || !this.duplicate.description || !this.duplicate.category) {
+      this.editFailed = true;
+      return;
+    }
+
     this.offer.title = this.duplicate.title;
     this.offer.description = this.duplicate.description;
     this.offer.category = this.duplicate.category;
     this.offer.type = this.duplicate.type;
     this.editMode = false;
+    this.editFailed = false;
+    if (this.isNew) {
+      this.isNew = false;
+      this.data.offers.unshift(this.offer);
+    }
   }
 }

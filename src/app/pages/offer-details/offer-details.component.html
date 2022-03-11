@@ -8,6 +8,7 @@
                     <span *ngIf="editMode && duplicate">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control mb-1" [(ngModel)]="duplicate.title" id="title" aria-describedby="title input"/>
+                        <span *ngIf="editFailed && !duplicate.title" class="text-danger" style="font-size: initial; font-weight: normal;">Title is required!</span>
                     </span>
                 </p>
                 <div class="col-4 posted-by">
@@ -23,6 +24,7 @@
             <span *ngIf="editMode && duplicate">
                 <h5 for="title" class="card-title">Description:</h5>
                 <textarea class="form-control" name="description" id="description" [(ngModel)]="duplicate.description" style="min-height: 15rem;"></textarea>
+                <span *ngIf="editFailed && !duplicate.description" class="text-danger" style="font-size: initial; font-weight: normal;">Description is required!</span>
             </span>
         </div>
     </div>
@@ -64,6 +66,7 @@
                         <i class="bi bi-tag-fill"></i>
                         &nbsp;<b>Category:</b>
                         <input type="text" class="form-control mb-1" [(ngModel)]="duplicate.category" id="category" aria-describedby="category input"/>
+                        <span *ngIf="editFailed && !duplicate.category" class="text-danger" style="font-size: initial; font-weight: normal;">Category is required!</span>
                     </div>
                 </div>
                 <div class="my-2">
@@ -136,6 +139,7 @@
                     </button>
                 </div>
             </div>
+            <div *ngIf="!appliedUsers.length">No one has applied for this offer yet!</div>
         </div>
     </div>
 
