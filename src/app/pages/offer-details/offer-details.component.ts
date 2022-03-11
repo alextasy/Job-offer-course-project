@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IJobOffer } from 'src/app/interfaces/job-offer.interface';
 import { DataService } from 'src/app/services/data.service';
 
@@ -12,10 +13,15 @@ export class OfferDetailsComponent implements OnInit {
   public offer: IJobOffer | undefined;
   public applyMessage = '';
   public postedByMe = false;
+  public appliedUsers: any[] = [];
+  public editMode = false;
+  public duplicate: IJobOffer | undefined;
 
   constructor(
     public data: DataService,
     private route: ActivatedRoute,
+    private modalService: NgbModal,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +30,12 @@ export class OfferDetailsComponent implements OnInit {
     const application = this.offer?.applied.find(user => user.id === this.data.currentUser?.id);
     if (application) this.applyMessage = application.message;
 
-    if (this.offer?.postedById === this.data.currentUser?.id) this.postedByMe = true;
+    if (this.offer?.postedById === this.data.currentUser?.id) {
+      this.postedByMe = true;
+      this.appliedUsers = this.offer?.applied.map(applied => {
+       return { ...this.data.users.find(user => applied.id === user.id), message: applied.message }
+      }) || [];
+    }
   }
 
   public getPostedBy(id: number): string {
@@ -52,5 +63,39 @@ export class OfferDetailsComponent implements OnInit {
 
   public hasApplied(): boolean {
     return Boolean(this.offer?.applied.some(user => user.id === this.data.currentUser?.id));
+  }
+
+  public approve(id: number): void {
+    if (this.offer?.acceptedUserId) delete this.offer.acceptedUserId;
+    //@ts-ignore
+    else this.offer?.acceptedUserId = id;
+  }
+
+  public openModal(content:any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal'});
+  }
+
+  public deleteOffer(): void {
+    this.modalService.dismissAll();
+    this.data.offers = this.data.offers.filter(offer => offer.id !== this.offer?.id);
+    this.router.navigate(['']);
+    window.scroll(0, 0);
+  }
+
+  public editOffer(): void {
+    if (!this.offer) return;
+
+    this.editMode = true;
+    this.duplicate = { ...this.offer };
+  }
+
+  public saveOffer(): void {
+    if (!this.offer || !this.duplicate) return;
+
+    this.offer.title = this.duplicate.title;
+    this.offer.description = this.duplicate.description;
+    this.offer.category = this.duplicate.category;
+    this.offer.type = this.duplicate.type;
+    this.editMode = false;
   }
 }

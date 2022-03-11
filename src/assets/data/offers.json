@@ -6,7 +6,10 @@
         "numOfLikes": 43,
         "type": "full-time",
         "category": "IT",
-        "applied": [{ "id": 1, "message": "Hello, your offer seems very interesting and I would like to discuss it further on the phone! I have several years of web design and development experience and I'm a good fit for the postion." }],
+        "applied": [
+            { "id": 1, "message": "Hello, your offer seems very interesting and I would like to discuss it further on the phone! I have several years of web design and development experience and I'm a good fit for the postion." },
+            { "id": 7, "message": "Wow this add seems cool, hire plz" }
+        ],
         "isActive": true,
         "acceptedUserId": 1,
         "postedById": 2

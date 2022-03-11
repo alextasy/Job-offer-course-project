@@ -40,5 +40,12 @@
         "email": "admin@telus.com",
         "password": "test123",
         "type": "company"
+    },
+    {
+        "id": 7,
+        "name": "John Smith",
+        "email": "john@test.com",
+        "password": "test123",
+        "type": "user"
     }
 ]
