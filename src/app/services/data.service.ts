@@ -16,7 +16,6 @@ export class DataService {
   public async loadData(): Promise<void> {
     this.offers = await this.http.get('../../assets/data/offers.json').toPromise() as IJobOffer[];
     this.users = await this.http.get('../../assets/data/users.json').toPromise() as IUser[];
-    this.currentUser = this.users[1]
   }
 
 

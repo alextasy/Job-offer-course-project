@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
 import { OfferDetailsComponent } from './pages/offer-details/offer-details.component';
 import { FormsModule } from '@angular/forms';
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 
 export function initData(data: DataService) {
   return () => data.loadData();
@@ -18,7 +19,8 @@ export function initData(data: DataService) {
   declarations: [
     AppComponent,
     OffersComponent,
-    OfferDetailsComponent
+    OfferDetailsComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,

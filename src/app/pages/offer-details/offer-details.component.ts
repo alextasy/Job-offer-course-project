@@ -91,7 +91,7 @@ export class OfferDetailsComponent implements OnInit {
     else this.offer?.acceptedUserId = id;
   }
 
-  public openModal(content:any) {
+  public openModal(content:any): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal'});
   }
 

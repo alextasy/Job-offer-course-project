@@ -1,4 +1,7 @@
 <div *ngIf="offer" class="container-md">
+    <button [routerLink]="['']" type="button" class="btn btn-outline-primary mt-4">
+        <i class="bi bi-arrow-left"></i> Back to list
+    </button>
     <div class="card position-relative my-4">
         <h5 class="card-header">
             <div class="row">
@@ -144,16 +147,16 @@
     </div>
 
     <div *ngIf="postedByMe" class="my-4">
-        <button *ngIf="!editMode" type="button" class="btn btn-primary mr-2" (click)="editOffer()">
+        <button *ngIf="!editMode" type="button" class="btn btn-primary mr-2 mb-2" (click)="editOffer()">
             <i class="bi bi-pencil-square"></i> Edit offer
         </button>
-        <button *ngIf="editMode" type="button" class="btn btn-primary mr-2" (click)="saveOffer()">
+        <button *ngIf="editMode" type="button" class="btn btn-primary mr-2 mb-2" (click)="saveOffer()">
             <i class="bi bi-pencil-square"></i> Save offer
         </button>
-        <button *ngIf="editMode" type="button" class="btn btn-outline-secondary mr-2" (click)="editMode = false">
+        <button *ngIf="editMode" type="button" class="btn btn-outline-secondary mr-2 mb-2" (click)="editMode = false">
             <i class="bi bi-backspace-fill"></i> Cancel
         </button>
-        <button type="button" class="btn btn-danger mr-2" (click)="openModal(content)">
+        <button type="button" class="btn btn-danger mr-2 mb-2" (click)="openModal(content)">
             <i class="bi bi-trash-fill"></i> Delete offer
         </button>
     </div>
