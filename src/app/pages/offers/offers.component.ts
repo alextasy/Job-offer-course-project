@@ -10,7 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 export class OffersComponent implements OnInit {
   public offers: IJobOffer[] = [];
 
-  constructor(private data: DataService) { }
+  constructor(public data: DataService) { }
 
   ngOnInit(): void {
     this.offers = this.data.offers;
