@@ -9,23 +9,28 @@
         <form>
             <div class="mb-3">
                 <label for="email" class="col-form-label">Email:</label>
-                <input type="email" class="form-control" id="email"/>
+                <input type="email" class="form-control" id="email" #email reqired/>
             </div>
             <div class="mb-3">
                 <label for="password" class="col-form-label">Password:</label>
-                <input type="password" class="form-control" id="password"/>
+                <input type="password" class="form-control" id="password" #password reqired/>
             </div>
+            <p class="text-danger  mb-0">{{ errMessage }}</p>
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="modal.close()">Sign in</button>
+        <button type="button" class="btn btn-primary" (click)="signIn(email.value, password.value)">Sign in</button>
     </div>
 </ng-template>
 
 <header class="Header navbar sticky-top border-bottom bg-white">
-    <h1 class="display-6">Job<span class="text-primary">Offers</span></h1>
+    <h2 class="mr-2" [routerLink]="''" role="button">Job<span class="text-primary">Offers</span></h2>
     <div class="btn-toolbar gap-2">
-        <button class="btn btn-primary" (click)="openModal(content)">Sign in</button>
+        <button *ngIf="!data.currentUser" class="btn btn-primary" (click)="openModal(content)">Sign in</button>
+        <span *ngIf="data.currentUser" role="button" [routerLink]="'/usersettings'">
+            <i class="bi bi-person-fill"></i>
+            {{ data.currentUser.name }}
+        </span>
     </div>
 </header>
 
